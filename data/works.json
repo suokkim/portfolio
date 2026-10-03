@@ -317,7 +317,24 @@
   "role": {
    "ko": "강의",
    "en": "Instructor"
-  }
+  },
+  "groups": [
+   {
+    "key": "브로셔 이미지 촬영",
+    "ko": "브로셔 이미지 촬영",
+    "en": "Brochure shoot"
+   },
+   {
+    "key": "Making",
+    "ko": "Making",
+    "en": "Making"
+   },
+   {
+    "key": "전시 디스플레이 촬영",
+    "ko": "전시 디스플레이 촬영",
+    "en": "Exhibition display"
+   }
+  ]
  },
  {
   "slug": "seaworld",

@@ -70,13 +70,19 @@ function workView(w) {
   const commercial = w.cat === "commercial";
   // 캡션: works.json 의 captions(한·영, 미디어 순서대로)가 있으면 그것, 없으면 노션에서 딴 캡션
   const caps = w.captions ? w.captions[lang] || w.captions.ko : [];
-  const items = (media[w.slug] || []).map((m, k) => {
+  const fig = (m, k) => {
     const el = m.type === "video"
       ? `<video src="${m.src}" poster="${m.poster}" controls playsinline preload="none"></video>`
       : `<img src="${m.src}" alt="${esc(L(w.title))}" loading="lazy">`;
     const cap = caps[k] || (w.captions ? "" : m.caption || "");
     return `<figure>${el}${cap ? `<figcaption>${esc(cap)}</figcaption>` : ""}</figure>`;
-  }).join("");
+  };
+  const all = media[w.slug] || [];
+  // groups 가 있으면 노션 하위 페이지처럼 묶음별 제목 + 그 묶음 미디어만 (목록에 없는 묶음은 뺀다)
+  const items = w.groups
+    ? w.groups.map((g) => `<h2 class="group-title">${esc(L(g))}</h2>` +
+        all.map((m, k) => (m.group === g.key ? fig(m, k) : "")).join("")).join("")
+    : all.map(fig).join("");
   return `<article class="work">
     <a class="back" href="#/">${t("back")}</a>
     <h1>${esc(L(w.title))}</h1>
