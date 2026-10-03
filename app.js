@@ -9,7 +9,7 @@ const T = {
     org: "소속", role: "역할", roleVal: "선임디자이너", back: "← 목록", prev: "← 이전", next: "다음 →",
     smsBody: "Suok Kim 포트폴리오", lang: "EN",
     all: "전체", commercial: "상업", noncommercial: "비상업",
-    university: "대학교", graduate: "대학원", hammerstudio: "HammerStudio", arttoy: "아트토이",
+    university: "대학교", graduate: "대학원", hammerstudio: "HammerStudio", arttoy: "교육",
   },
   en: {
     share: "Share", sms: "Send by text message", qr: "Show QR code",
@@ -17,7 +17,7 @@ const T = {
     org: "Affiliation", role: "Role", roleVal: "Senior Designer", back: "← All works", prev: "← Previous", next: "Next →",
     smsBody: "Suok Kim — Portfolio", lang: "KO",
     all: "All", commercial: "Commercial", noncommercial: "Non-commercial",
-    university: "University", graduate: "Graduate", hammerstudio: "HammerStudio", arttoy: "Art toys",
+    university: "University", graduate: "Graduate", hammerstudio: "HammerStudio", arttoy: "Education",
   },
 };
 

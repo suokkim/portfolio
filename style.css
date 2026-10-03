@@ -156,3 +156,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 
 /* 작품 안 묶음 카드 (split) */
 .work .grid { padding: 0; }
+
+/* Connect */
+.connect { border-top: 1px solid rgba(255,255,255,.08); }
+.connect-label { margin: 0 0 6px; font-size: .72rem; letter-spacing: .12em; color: var(--muted); }
+.connect a { font-size: .9rem; }
+.connect a:hover { text-decoration: underline; text-underline-offset: 3px; }
