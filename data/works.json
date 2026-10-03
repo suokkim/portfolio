@@ -266,6 +266,43 @@
   "links": []
  },
  {
+  "slug": "hammerstudio-class",
+  "cat": "noncommercial",
+  "sub": "hammerstudio",
+  "year": 2019,
+  "company": {
+   "ko": "HammerStudio",
+   "en": "HammerStudio"
+  },
+  "client": null,
+  "cover": 1,
+  "title": {
+   "ko": "HammerStudio — 클래스",
+   "en": "HammerStudio — Class"
+  },
+  "desc": {
+   "ko": "HammerStudio 클래스 자료. 캐릭터·아트토이 디자인(Gallery)과 3D 출력물 사진.",
+   "en": "HammerStudio class material — character and art-toy designs (Gallery) and photos of 3D-printed pieces."
+  },
+  "links": [],
+  "captions": {
+   "ko": [],
+   "en": []
+  },
+  "groups": [
+   {
+    "key": "Gallery",
+    "ko": "Gallery",
+    "en": "Gallery"
+   },
+   {
+    "key": "제목 없음",
+    "ko": "출력물 사진",
+    "en": "Printed pieces"
+   }
+  ]
+ },
+ {
   "slug": "jewelry",
   "cat": "noncommercial",
   "year": 2016,
