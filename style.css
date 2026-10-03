@@ -153,8 +153,3 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* 유튜브 임베드 (works.json youtube) */
 .yt iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; display: block; background: #000; }
 
-/* 분류 = 이모지 버튼 — 고른 것만 또렷하게 */
-.filter button { font-size: 1.15rem; letter-spacing: 0; opacity: .35; filter: grayscale(1); transition: opacity .3s, filter .3s; }
-.filter button[aria-pressed="true"] { opacity: 1; filter: none; }
-.subfilter button { font-size: 1rem; }
-.cur { max-width: 1280px; margin: 0 auto 14px; padding: 0 16px; font-weight: 400; color: var(--muted); font-size: .75rem; letter-spacing: .08em; }

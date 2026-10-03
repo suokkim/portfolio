@@ -26,8 +26,6 @@ let works = [], media = {};
 let cat = "all";   // 분류: all | commercial | noncommercial (디렉터 10-03 — 대학교·대학원 작업을 상업/비상업으로)
 let sub = "all";   // 비상업 하위: all | university | graduate | hammerstudio | arttoy (디렉터 10-03)
 const SUBS = ["university", "graduate", "hammerstudio", "arttoy"];
-// 분류 버튼은 이모지만 — 이름은 목록 위 작은 제목으로 (디렉터 10-03 "카테고리를 간단하게")
-const EMOJI = { all: "✳️", commercial: "💼", noncommercial: "🎨", university: "🎓", graduate: "📚", hammerstudio: "🔨", arttoy: "🧸" };
 
 function pickLang() {
   const q = new URLSearchParams(location.search).get("lang");
@@ -56,8 +54,7 @@ const shown = () => works.filter((w) =>
 
 function listView() {
   document.title = "Suok Kim — Portfolio";
-  const label = cat === "all" ? "" : t(cat) + (cat === "noncommercial" && sub !== "all" ? " · " + t(sub) : "");
-  return (label ? `<h3 class="cur">${label}</h3>` : "") + `<section class="grid">${shown().map((w) => `
+  return `<section class="grid">${shown().map((w) => `
     <a class="card" href="#/${w.slug}">
       <div class="thumb"><img src="${coverOf(w)}" alt="${esc(L(w.title))}" loading="lazy"></div>
       <h2>${esc(L(w.title))}</h2>
@@ -117,10 +114,10 @@ function render() {
   // 상세 페이지에서도 분류를 누르면 목록으로 (디렉터 10-03)
   const toList = () => (w ? (location.hash = "#/") : render());
   filter.innerHTML = ["all", "commercial", "noncommercial"].map((c) =>
-    `<button type="button" data-cat="${c}" aria-pressed="${c === cat}" title="${t(c)}" aria-label="${t(c)}">${EMOJI[c]}</button>`).join("")
+    `<button type="button" data-cat="${c}" aria-pressed="${c === cat}">${t(c)}</button>`).join("")
     // 비상업을 고르면 하위 분류 한 줄이 더 나온다
     + (cat === "noncommercial" ? `<span class="subfilter">${["all", ...SUBS].map((s) =>
-      `<button type="button" data-sub="${s}" aria-pressed="${s === sub}" title="${t(s)}" aria-label="${t(s)}">${EMOJI[s]}</button>`).join("")}</span>` : "");
+      `<button type="button" data-sub="${s}" aria-pressed="${s === sub}">${t(s)}</button>`).join("")}</span>` : "");
   filter.querySelectorAll("button[data-cat]").forEach((b) => (b.onclick = () => { cat = b.dataset.cat; sub = "all"; toList(); }));
   filter.querySelectorAll("button[data-sub]").forEach((b) => (b.onclick = () => { sub = b.dataset.sub; toList(); }));
   document.getElementById("view").innerHTML = w ? workView(w) : listView();
