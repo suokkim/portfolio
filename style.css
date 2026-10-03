@@ -136,3 +136,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* 작업 안 묶음 제목 (아트토이 — 브로셔 · Making · 전시) */
 .group-title { font-size: .85rem; font-weight: 500; margin: 28px 0 4px; }
 .group-title:first-child { margin-top: 0; }
+
+/* QR 아이콘 버튼 */
+.top nav { align-items: center; }
+.share-btn svg { display: block; }

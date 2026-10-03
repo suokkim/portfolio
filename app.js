@@ -95,7 +95,7 @@ function workView(w) {
     </dl>
     ${L(w.desc) ? `<p class="desc">${esc(L(w.desc))}</p>` : ""}
     ${w.links.length ? `<ul class="links">${w.links.map((l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a></li>`).join("")}</ul>` : ""}
-    <div class="work-share"><button class="share-btn" type="button">${t("share")}</button></div>
+    <div class="work-share"><button class="share-btn" type="button" aria-label="QR"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg></button></div>
     <div class="media">${items}</div>
     <nav class="next">
       <span>${prev ? `<a href="#/${prev.slug}">${t("prev")}</a>` : ""}</span>
@@ -123,7 +123,7 @@ function render() {
   document.getElementById("view").innerHTML = w ? workView(w) : listView();
   watchCenter();
   document.querySelectorAll("#view .media img").forEach((img, k, all) => (img.onclick = () => openZoom([...all], k)));
-  document.querySelectorAll("#view .share-btn").forEach((b) => (b.onclick = openSheet));
+  document.querySelectorAll("#view .share-btn").forEach((b) => (b.onclick = openQR));
 }
 
 // 휴대폰(마우스 호버 없음): 화면 세로 가운데에 가장 가까운 썸네일 한 줄만 제목이 올라온다 (디렉터 10-03)
@@ -156,24 +156,22 @@ function closeZoom() {
   document.body.style.overflow = "";
 }
 
-// 공유 — 문자: 지금 보고 있는 페이지 주소 / QR: 사이트 첫 화면 주소
-function openSheet() {
-  const url = SITE + (location.hash.length > 2 ? location.hash : "");
-  const w = works.find((x) => x.slug === location.hash.replace(/^#\/?/, ""));
-  const body = `${w ? L(w.title) + " — " : ""}${t("smsBody")} ${url}`;
-  // iOS 는 sms:&body=, 안드로이드는 sms:?body= — 둘 다 받는 꼴
-  document.getElementById("sms").href = "sms:?&body=" + encodeURIComponent(body);
-  document.getElementById("sheet").hidden = false;
+// QR — 공유 버튼 대신 QR 아이콘, 누르면 바로 QR 만 화면 가득 (디렉터 10-03)
+// 화면 밝기는 웹에서 바꿀 수 없다(브라우저에 그런 기능이 없음) — 대신 흰 화면 + 켜져 있는 동안 화면이 어두워지거나 꺼지지 않게
+let wake = null;
+async function openQR() {
+  document.getElementById("qr-full").hidden = false;
+  try { wake = await navigator.wakeLock?.request("screen"); } catch (e) {}
 }
-function closeSheet() { document.getElementById("sheet").hidden = true; }
+function closeQR() {
+  document.getElementById("qr-full").hidden = true;
+  if (wake) { wake.release().catch(() => {}); wake = null; }
+}
 
-document.querySelectorAll("header .share-btn, footer .share-btn").forEach((b) => (b.onclick = openSheet));
-document.getElementById("sheet-close").onclick = closeSheet;
-document.getElementById("sheet").onclick = (e) => { if (e.target.id === "sheet") closeSheet(); };
-document.getElementById("qr-open").onclick = () => { closeSheet(); document.getElementById("qr-full").hidden = false; };
-document.getElementById("qr-full").onclick = () => (document.getElementById("qr-full").hidden = true);
+document.querySelectorAll("header .share-btn, footer .share-btn").forEach((b) => (b.onclick = openQR));
+document.getElementById("qr-full").onclick = closeQR;
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") { closeSheet(); closeZoom(); document.getElementById("qr-full").hidden = true; }
+  if (e.key === "Escape") { closeZoom(); closeQR(); }
 });
 document.getElementById("lang").onclick = () => setLang(lang === "ko" ? "en" : "ko");
 window.addEventListener("hashchange", () => { closeZoom(); render(); window.scrollTo(0, 0); });
