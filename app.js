@@ -126,15 +126,20 @@ function render() {
   document.querySelectorAll("#view .share-btn").forEach((b) => (b.onclick = openSheet));
 }
 
-// 휴대폰(호버 없음): 화면 세로 가운데 줄에 걸친 썸네일만 제목이 올라온다 (디렉터 10-03)
-let centerObs;
+// 휴대폰(마우스 호버 없음): 화면 세로 가운데에 가장 가까운 썸네일 한 줄만 제목이 올라온다 (디렉터 10-03)
 function watchCenter() {
-  if (centerObs) centerObs.disconnect();
-  if (!matchMedia("(hover: none)").matches || !window.IntersectionObserver) return;
-  centerObs = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle("on", e.isIntersecting)),
-    { rootMargin: "-49% 0px -50% 0px" });
-  document.querySelectorAll("#view .card").forEach((c) => centerObs.observe(c));
+  if (matchMedia("(hover: hover)").matches) return;
+  const mid = innerHeight / 2;
+  let best = null, d = Infinity;
+  document.querySelectorAll("#view .card").forEach((c) => {
+    const r = c.getBoundingClientRect(), dc = Math.abs(r.top + r.height / 2 - mid);
+    if (dc < d) { d = dc; best = r.top; }
+  });
+  // 같은 줄(가로로 나란한 카드)은 함께
+  document.querySelectorAll("#view .card").forEach((c) => c.classList.toggle("on", c.getBoundingClientRect().top === best));
 }
+addEventListener("scroll", watchCenter, { passive: true });
+addEventListener("resize", watchCenter);
 
 // 이미지 크게 보기 — 한 장씩 화면 가득, 위아래로 밀면 다음 장 (CSS scroll-snap), 확대는 손가락 벌리기 (디렉터 10-03)
 function openZoom(imgs, k) {
