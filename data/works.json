@@ -266,6 +266,30 @@
   "links": []
  },
  {
+  "slug": "jewelry",
+  "cat": "noncommercial",
+  "year": 2016,
+  "company": {
+   "ko": "okworks",
+   "en": "okworks"
+  },
+  "client": null,
+  "cover": 1,
+  "title": {
+   "ko": "주얼리 — 반지 연작",
+   "en": "Jewelry — Ring Series"
+  },
+  "desc": {
+   "ko": "3D 모델링으로 디자인하고 실물로 만든 반지 연작(1호–5호, Ring N.01–N.06). 겹꽃 반지, 원반 반지 등 — 렌더 영상, 제작 과정, 착용 사진.",
+   "en": "A series of rings designed in 3D and made as real pieces (No. 1–5, Ring N.01–N.06) — a layered-flower ring, a disc ring and more. Render films, making-of and worn photos."
+  },
+  "links": [],
+  "captions": {
+   "ko": [],
+   "en": []
+  }
+ },
+ {
   "slug": "seaworld",
   "cat": "noncommercial",
   "year": null,
