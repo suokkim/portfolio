@@ -153,3 +153,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* 유튜브 임베드 (works.json youtube) */
 .yt iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; display: block; background: #000; }
 
+
+/* 작품 안 묶음 카드 (split) */
+.work .grid { padding: 0; }

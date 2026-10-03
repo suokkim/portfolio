@@ -62,6 +62,28 @@ function listView() {
     </a>`).join("")}</section>`;
 }
 
+// 미디어가 그 묶음(works.json groups 의 key — 노션 하위 페이지 이름) 소속인지
+const inGroup = (m, g) => [].concat(g.key).some((key) => m.group === key || `${m.group}/${m.group2}` === key);
+
+// #/<slug>/<번호> — split 작품의 묶음 하나짜리 페이지
+function groupView(w, n) {
+  const g = w.groups[n - 1];
+  if (!g) return workView(w);
+  document.title = `${L(g)} — ${L(w.title)} — Suok Kim`;
+  const items = (media[w.slug] || []).filter((m) => inGroup(m, g)).map((m) => `<figure>${m.type === "video"
+    ? `<video src="${m.src}" poster="${m.poster}" controls playsinline preload="none"></video>`
+    : `<img src="${m.src}" alt="${esc(L(g))}" loading="lazy">`}</figure>`).join("");
+  return `<article class="work">
+    <a class="back" href="#/${w.slug}">← ${esc(L(w.title))}</a>
+    <h1>${esc(L(g))}</h1>
+    <div class="media">${items}</div>
+    <nav class="next">
+      <span>${n > 1 ? `<a href="#/${w.slug}/${n - 1}">${t("prev")}</a>` : ""}</span>
+      <span>${n < w.groups.length ? `<a href="#/${w.slug}/${n + 1}">${t("next")}</a>` : ""}</span>
+    </nav>
+  </article>`;
+}
+
 function workView(w) {
   document.title = `${L(w.title)} — Suok Kim`;
   const list = shown().includes(w) ? shown() : works;
@@ -81,8 +103,18 @@ function workView(w) {
   // groups 가 있으면 노션 하위 페이지처럼 묶음별 제목 + 그 묶음 미디어만 (목록에 없는 묶음은 뺀다)
   const items = w.groups
     ? w.groups.map((g) => `<h2 class="group-title">${esc(L(g))}</h2>` +
-        all.map((m, k) => ([].concat(g.key).some((key) => m.group === key || `${m.group}/${m.group2}` === key) ? fig(m, k) : "")).join("")).join("")
+        all.map((m, k) => (inGroup(m, g) ? fig(m, k) : "")).join("")).join("")
     : all.map(fig).join("");
+  // split: 묶음마다 따로 페이지 — 작품 페이지는 묶음 카드만 (디렉터 10-03, 주얼리 반지 연작)
+  const body = w.split
+    ? `<div class="grid">${w.groups.map((g, gi) => {
+        const c = all.find((m) => inGroup(m, g));
+        return `<a class="card" href="#/${w.slug}/${gi + 1}">
+          <div class="thumb"><img src="${c ? c.poster || c.src : ""}" alt="${esc(L(g))}" loading="lazy"></div>
+          <h2>${esc(L(g))}</h2>
+          <div class="meta">${all.filter((m) => inGroup(m, g)).length}</div>
+        </a>`; }).join("")}</div>`
+    : `<div class="media">${w.youtube ? `<figure class="yt"><iframe src="https://www.youtube-nocookie.com/embed/${esc(w.youtube)}" title="${esc(L(w.title))}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></figure>` : ""}${items}</div>`;
   return `<article class="work">
     <a class="back" href="#/">${t("back")}</a>
     <h1>${esc(L(w.title))}</h1>
@@ -95,7 +127,7 @@ function workView(w) {
     </dl>
     ${L(w.desc) ? `<p class="desc">${esc(L(w.desc))}</p>` : ""}
     ${w.links.length ? `<ul class="links">${w.links.map((l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a></li>`).join("")}</ul>` : ""}
-    <div class="media">${w.youtube ? `<figure class="yt"><iframe src="https://www.youtube-nocookie.com/embed/${esc(w.youtube)}" title="${esc(L(w.title))}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></figure>` : ""}${items}</div>
+    ${body}
     <nav class="next">
       <span>${prev ? `<a href="#/${prev.slug}">${t("prev")}</a>` : ""}</span>
       <span>${next ? `<a href="#/${next.slug}">${t("next")}</a>` : ""}</span>
@@ -107,7 +139,7 @@ function render() {
   document.documentElement.lang = lang;
   document.querySelectorAll("[data-t]").forEach((el) => (el.textContent = t(el.dataset.t)));
   document.getElementById("lang").textContent = t("lang");
-  const slug = location.hash.replace(/^#\/?/, "");
+  const [slug, n] = location.hash.replace(/^#\/?/, "").split("/");
   const w = works.find((x) => x.slug === slug);
   const filter = document.getElementById("filter");
   // 상세 페이지에서도 분류를 누르면 목록으로 (디렉터 10-03)
@@ -119,7 +151,7 @@ function render() {
       `<button type="button" data-sub="${s}" aria-pressed="${s === sub}">${t(s)}</button>`).join("")}</span>` : "");
   filter.querySelectorAll("button[data-cat]").forEach((b) => (b.onclick = () => { cat = b.dataset.cat; sub = "all"; toList(); }));
   filter.querySelectorAll("button[data-sub]").forEach((b) => (b.onclick = () => { sub = b.dataset.sub; toList(); }));
-  document.getElementById("view").innerHTML = w ? workView(w) : listView();
+  document.getElementById("view").innerHTML = w && n ? groupView(w, +n) : w ? workView(w) : listView();
   watchCenter();
   document.querySelectorAll("#view .media img").forEach((img, k, all) => (img.onclick = () => openZoom([...all], k)));
   document.querySelectorAll("#view .share-btn").forEach((b) => (b.onclick = openQR));
