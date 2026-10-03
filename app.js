@@ -17,7 +17,7 @@ const T = {
     org: "Affiliation", role: "Role", roleVal: "Senior Designer", back: "← All works", prev: "← Previous", next: "Next →",
     smsBody: "Suok Kim — Portfolio", lang: "KO",
     all: "All", commercial: "Commercial", noncommercial: "Non-commercial",
-    university: "University", graduate: "Graduate school", hammerstudio: "HammerStudio", arttoy: "Art toys",
+    university: "Undergrad", graduate: "Graduate", hammerstudio: "HammerStudio", arttoy: "Toys",
   },
 };
 
@@ -111,16 +111,33 @@ function render() {
   const slug = location.hash.replace(/^#\/?/, "");
   const w = works.find((x) => x.slug === slug);
   const filter = document.getElementById("filter");
-  filter.hidden = !!w;
+  // 상세 페이지에서도 분류를 누르면 목록으로 (디렉터 10-03)
+  const toList = () => (w ? (location.hash = "#/") : render());
   filter.innerHTML = ["all", "commercial", "noncommercial"].map((c) =>
     `<button type="button" data-cat="${c}" aria-pressed="${c === cat}">${t(c)}</button>`).join("")
     // 비상업을 고르면 하위 분류 한 줄이 더 나온다
     + (cat === "noncommercial" ? `<span class="subfilter">${["all", ...SUBS].map((s) =>
       `<button type="button" data-sub="${s}" aria-pressed="${s === sub}">${t(s)}</button>`).join("")}</span>` : "");
-  filter.querySelectorAll("button[data-cat]").forEach((b) => (b.onclick = () => { cat = b.dataset.cat; sub = "all"; render(); }));
-  filter.querySelectorAll("button[data-sub]").forEach((b) => (b.onclick = () => { sub = b.dataset.sub; render(); }));
+  filter.querySelectorAll("button[data-cat]").forEach((b) => (b.onclick = () => { cat = b.dataset.cat; sub = "all"; toList(); }));
+  filter.querySelectorAll("button[data-sub]").forEach((b) => (b.onclick = () => { sub = b.dataset.sub; toList(); }));
   document.getElementById("view").innerHTML = w ? workView(w) : listView();
+  document.querySelectorAll("#view .media img").forEach((img, k, all) => (img.onclick = () => openZoom([...all], k)));
   document.querySelectorAll("#view .share-btn").forEach((b) => (b.onclick = openSheet));
+}
+
+// 이미지 크게 보기 — 한 장씩 화면 가득, 위아래로 밀면 다음 장 (CSS scroll-snap), 확대는 손가락 벌리기 (디렉터 10-03)
+function openZoom(imgs, k) {
+  const z = document.getElementById("zoom");
+  z.innerHTML = `<button class="zoom-close" type="button">${t("close")}</button>` +
+    imgs.map((i) => `<div class="z"><img src="${i.src}" alt=""></div>`).join("");
+  z.hidden = false;
+  document.body.style.overflow = "hidden";
+  z.querySelectorAll(".z")[k].scrollIntoView();
+  z.querySelector(".zoom-close").onclick = closeZoom;
+}
+function closeZoom() {
+  document.getElementById("zoom").hidden = true;
+  document.body.style.overflow = "";
 }
 
 // 공유 — 문자: 지금 보고 있는 페이지 주소 / QR: 사이트 첫 화면 주소
@@ -140,10 +157,10 @@ document.getElementById("sheet").onclick = (e) => { if (e.target.id === "sheet")
 document.getElementById("qr-open").onclick = () => { closeSheet(); document.getElementById("qr-full").hidden = false; };
 document.getElementById("qr-full").onclick = () => (document.getElementById("qr-full").hidden = true);
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") { closeSheet(); document.getElementById("qr-full").hidden = true; }
+  if (e.key === "Escape") { closeSheet(); closeZoom(); document.getElementById("qr-full").hidden = true; }
 });
 document.getElementById("lang").onclick = () => setLang(lang === "ko" ? "en" : "ko");
-window.addEventListener("hashchange", () => { render(); window.scrollTo(0, 0); });
+window.addEventListener("hashchange", () => { closeZoom(); render(); window.scrollTo(0, 0); });
 
 Promise.all([fetch("data/works.json").then((r) => r.json()), fetch("data/media.json").then((r) => r.json())])
   .then(([w, m]) => { works = w; media = m; render(); });
