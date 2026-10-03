@@ -81,7 +81,7 @@ function workView(w) {
   // groups 가 있으면 노션 하위 페이지처럼 묶음별 제목 + 그 묶음 미디어만 (목록에 없는 묶음은 뺀다)
   const items = w.groups
     ? w.groups.map((g) => `<h2 class="group-title">${esc(L(g))}</h2>` +
-        all.map((m, k) => (m.group === g.key ? fig(m, k) : "")).join("")).join("")
+        all.map((m, k) => (m.group === g.key || `${m.group}/${m.group2}` === g.key ? fig(m, k) : "")).join("")).join("")
     : all.map(fig).join("");
   return `<article class="work">
     <a class="back" href="#/">${t("back")}</a>
