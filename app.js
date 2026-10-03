@@ -9,6 +9,7 @@ const T = {
     org: "소속", role: "역할", roleVal: "선임디자이너", back: "← 목록", prev: "← 이전", next: "다음 →",
     smsBody: "Suok Kim 포트폴리오", lang: "EN",
     all: "전체", commercial: "상업", noncommercial: "비상업",
+    university: "대학교", graduate: "대학원", hammerstudio: "HammerStudio",
   },
   en: {
     share: "Share", sms: "Send by text message", qr: "Show QR code",
@@ -16,12 +17,15 @@ const T = {
     org: "Affiliation", role: "Role", roleVal: "Senior Designer", back: "← All works", prev: "← Previous", next: "Next →",
     smsBody: "Suok Kim — Portfolio", lang: "KO",
     all: "All", commercial: "Commercial", noncommercial: "Non-commercial",
+    university: "University", graduate: "Graduate school", hammerstudio: "HammerStudio",
   },
 };
 
 let lang = pickLang();
 let works = [], media = {};
 let cat = "all";   // 분류: all | commercial | noncommercial (디렉터 10-03 — 대학교·대학원 작업을 상업/비상업으로)
+let sub = "all";   // 비상업 하위: all | university | graduate | hammerstudio (디렉터 10-03)
+const SUBS = ["university", "graduate", "hammerstudio"];
 
 function pickLang() {
   const q = new URLSearchParams(location.search).get("lang");
@@ -45,7 +49,8 @@ function coverOf(w) {
   return it.type === "video" ? it.poster : it.src;
 }
 
-const shown = () => works.filter((w) => cat === "all" || w.cat === cat);
+const shown = () => works.filter((w) =>
+  (cat === "all" || w.cat === cat) && (cat !== "noncommercial" || sub === "all" || w.sub === sub));
 
 function listView() {
   document.title = "Suok Kim — Portfolio";
@@ -101,8 +106,12 @@ function render() {
   const filter = document.getElementById("filter");
   filter.hidden = !!w;
   filter.innerHTML = ["all", "commercial", "noncommercial"].map((c) =>
-    `<button type="button" data-cat="${c}" aria-pressed="${c === cat}">${t(c)}</button>`).join("");
-  filter.querySelectorAll("button").forEach((b) => (b.onclick = () => { cat = b.dataset.cat; render(); }));
+    `<button type="button" data-cat="${c}" aria-pressed="${c === cat}">${t(c)}</button>`).join("")
+    // 비상업을 고르면 하위 분류 한 줄이 더 나온다
+    + (cat === "noncommercial" ? `<span class="subfilter">${["all", ...SUBS].map((s) =>
+      `<button type="button" data-sub="${s}" aria-pressed="${s === sub}">${t(s)}</button>`).join("")}</span>` : "");
+  filter.querySelectorAll("button[data-cat]").forEach((b) => (b.onclick = () => { cat = b.dataset.cat; sub = "all"; render(); }));
+  filter.querySelectorAll("button[data-sub]").forEach((b) => (b.onclick = () => { sub = b.dataset.sub; render(); }));
   document.getElementById("view").innerHTML = w ? workView(w) : listView();
   document.querySelectorAll("#view .share-btn").forEach((b) => (b.onclick = openSheet));
 }

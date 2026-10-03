@@ -287,7 +287,8 @@
   "captions": {
    "ko": [],
    "en": []
-  }
+  },
+  "sub": "hammerstudio"
  },
  {
   "slug": "seaworld",
@@ -307,7 +308,8 @@
    "en": "Graduate personal project — 3D projection mapping with camera tracking, 2D images and 3D modeling."
   },
   "links": [],
-  "cover": 2
+  "cover": 2,
+  "sub": "graduate"
  },
  {
   "slug": "miffy",
@@ -327,7 +329,8 @@
    "en": "Graduate project. My part — 2D compositing (Shake); 3D modeling, mapping, rigging, lighting and rendering (Cinema 4D)."
   },
   "links": [],
-  "cover": 2
+  "cover": 2,
+  "sub": "graduate"
  },
  {
   "slug": "lipsync",
@@ -347,7 +350,8 @@
    "en": "Character animation lip-sync study."
   },
   "links": [],
-  "cover": 1
+  "cover": 1,
+  "sub": "graduate"
  },
  {
   "slug": "a-dot",
@@ -367,7 +371,8 @@
    "en": "Graduation work, Chugye University for the Arts."
   },
   "links": [],
-  "cover": 2
+  "cover": 2,
+  "sub": "university"
  },
  {
   "slug": "outrush",
@@ -387,7 +392,8 @@
    "en": "A 2D collage animation in which hand-drawn hands and figures move over graffiti-covered restroom walls and urinals (30 sec)."
   },
   "links": [],
-  "cover": 2
+  "cover": 2,
+  "sub": "university"
  },
  {
   "slug": "vdas-playing",
@@ -407,7 +413,8 @@
    "en": "An animation weaving scenes of 'play' — a golf course, a tennis court, a dinner table — into a print-textured collage, with skull-faced figures driving golf carts, playing tennis and drinking (1 min)."
   },
   "links": [],
-  "cover": 2
+  "cover": 2,
+  "sub": "university"
  },
  {
   "slug": "printmaking",
@@ -427,6 +434,7 @@
    "en": "Copperplate prints from the third year of university — A Balloon, Johannes Paulus II, Marilyn Monroe."
   },
   "links": [],
-  "cover": 1
+  "cover": 1,
+  "sub": "university"
  }
 ]

@@ -108,3 +108,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .media figure { margin: 0; }
 .media figcaption { color: var(--muted); font-size: .75rem; margin-top: 6px; }
 .desc { white-space: pre-line; }
+
+/* 비상업 하위 분류 — 한 줄 아래, 더 작게 */
+.filter { flex-wrap: wrap; }
+.subfilter { flex-basis: 100%; display: flex; gap: 16px; padding-top: 6px; }
+.subfilter button { font-size: .72rem; }
