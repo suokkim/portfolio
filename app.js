@@ -43,6 +43,7 @@ const L = (o) => (o == null ? "" : typeof o === "string" ? o : o[lang] || o.ko);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 function coverOf(w) {
+  if (w.coverUrl) return w.coverUrl;   // 다른 사이트(karts)에 있는 작업은 그쪽 이미지
   const items = media[w.slug] || [];
   const it = items[(w.cover || 1) - 1] || items[0];
   if (!it) return "";
@@ -56,7 +57,7 @@ function listView() {
   document.title = "Suok Kim — Portfolio";
   // split 작품(주얼리)은 목록에서 묶음 하나하나를 카드로 꺼내 보인다 (디렉터 10-03 "바로 펼쳐줘")
   const cards = (w) => !w.split ? `
-    <a class="card" href="#/${w.slug}">
+    <a class="card" href="${w.url ? esc(w.url) + '" target="_blank" rel="noopener' : "#/" + w.slug}">
       <div class="thumb"><img src="${coverOf(w)}" alt="${esc(L(w.title))}" loading="lazy"></div>
       <h2>${esc(L(w.title))}</h2>
       <div class="meta">${w.year || ""}</div>
@@ -68,6 +69,12 @@ function listView() {
       <h2>${esc(L(g))}</h2>
       <div class="meta">${esc(L(w.title))}</div>
     </a>`; }).join("");
+  // 교육은 학교별로 나눠 보인다 — 숙명여대 · 한예종 (디렉터 10-03)
+  if (cat === "noncommercial" && sub === "arttoy") {
+    const schools = [...new Set(shown().map((w) => L(w.school)))];
+    return schools.map((s) => `<h3 class="school">${esc(s)}</h3><section class="grid">${
+      shown().filter((w) => L(w.school) === s).map(cards).join("")}</section>`).join("");
+  }
   return `<section class="grid">${shown().map(cards).join("")}</section>`;
 }
 
