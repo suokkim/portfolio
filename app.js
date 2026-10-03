@@ -54,12 +54,21 @@ const shown = () => works.filter((w) =>
 
 function listView() {
   document.title = "Suok Kim — Portfolio";
-  return `<section class="grid">${shown().map((w) => `
+  // split 작품(주얼리)은 목록에서 묶음 하나하나를 카드로 꺼내 보인다 (디렉터 10-03 "바로 펼쳐줘")
+  const cards = (w) => !w.split ? `
     <a class="card" href="#/${w.slug}">
       <div class="thumb"><img src="${coverOf(w)}" alt="${esc(L(w.title))}" loading="lazy"></div>
       <h2>${esc(L(w.title))}</h2>
       <div class="meta">${w.year || ""}</div>
-    </a>`).join("")}</section>`;
+    </a>` : w.groups.map((g, gi) => {
+      const c = (media[w.slug] || []).find((m) => inGroup(m, g));
+      return `
+    <a class="card" href="#/${w.slug}/${gi + 1}">
+      <div class="thumb"><img src="${c ? c.poster || c.src : ""}" alt="${esc(L(g))}" loading="lazy"></div>
+      <h2>${esc(L(g))}</h2>
+      <div class="meta">${esc(L(w.title))}</div>
+    </a>`; }).join("");
+  return `<section class="grid">${shown().map(cards).join("")}</section>`;
 }
 
 // 미디어가 그 묶음(works.json groups 의 key — 노션 하위 페이지 이름) 소속인지
@@ -74,8 +83,9 @@ function groupView(w, n) {
     ? `<video src="${m.src}" poster="${m.poster}" controls playsinline preload="none"></video>`
     : `<img src="${m.src}" alt="${esc(L(g))}" loading="lazy">`}</figure>`).join("");
   return `<article class="work">
-    <a class="back" href="#/${w.slug}">← ${esc(L(w.title))}</a>
+    <a class="back" href="#/">${t("back")}</a>
     <h1>${esc(L(g))}</h1>
+    <div class="meta" style="color:var(--muted);font-size:.8rem;margin:-6px 0 18px">${esc(L(w.title))}${w.year ? " · " + w.year : ""}</div>
     <div class="media">${items}</div>
     <nav class="next">
       <span>${n > 1 ? `<a href="#/${w.slug}/${n - 1}">${t("prev")}</a>` : ""}</span>
