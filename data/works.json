@@ -291,6 +291,31 @@
   "sub": "hammerstudio"
  },
  {
+  "slug": "arttoy",
+  "cat": "noncommercial",
+  "sub": "arttoy",
+  "year": 2015,
+  "company": {
+   "ko": "숙명여자대학교 Fab Lab",
+   "en": "Sookmyung Women's University Fab Lab"
+  },
+  "client": null,
+  "cover": 1,
+  "title": {
+   "ko": "아트토이 — 숙명여대 Fab Lab 2015-2",
+   "en": "Art Toys — Sookmyung Fab Lab, Fall 2015"
+  },
+  "desc": {
+   "ko": "숙명여대 Fab Lab 2015년 2학기 아트토이. 3D 모델링·출력으로 만든 피규어와 소품(선인장, 캐릭터, 페이퍼웨이트 등) — 브로셔 이미지 촬영, 전시 디스플레이, 제작 과정.",
+   "en": "Art toys from the Sookmyung Women's University Fab Lab, fall 2015 — figures and objects modeled and printed in 3D (a cactus, characters, paperweights and more). Brochure shoots, exhibition display and making-of."
+  },
+  "links": [],
+  "captions": {
+   "ko": [],
+   "en": []
+  }
+ },
+ {
   "slug": "seaworld",
   "cat": "noncommercial",
   "year": null,

@@ -9,7 +9,7 @@ const T = {
     org: "소속", role: "역할", roleVal: "선임디자이너", back: "← 목록", prev: "← 이전", next: "다음 →",
     smsBody: "Suok Kim 포트폴리오", lang: "EN",
     all: "전체", commercial: "상업", noncommercial: "비상업",
-    university: "대학교", graduate: "대학원", hammerstudio: "HammerStudio",
+    university: "대학교", graduate: "대학원", hammerstudio: "HammerStudio", arttoy: "아트토이",
   },
   en: {
     share: "Share", sms: "Send by text message", qr: "Show QR code",
@@ -17,15 +17,15 @@ const T = {
     org: "Affiliation", role: "Role", roleVal: "Senior Designer", back: "← All works", prev: "← Previous", next: "Next →",
     smsBody: "Suok Kim — Portfolio", lang: "KO",
     all: "All", commercial: "Commercial", noncommercial: "Non-commercial",
-    university: "University", graduate: "Graduate school", hammerstudio: "HammerStudio",
+    university: "University", graduate: "Graduate school", hammerstudio: "HammerStudio", arttoy: "Art toys",
   },
 };
 
 let lang = pickLang();
 let works = [], media = {};
 let cat = "all";   // 분류: all | commercial | noncommercial (디렉터 10-03 — 대학교·대학원 작업을 상업/비상업으로)
-let sub = "all";   // 비상업 하위: all | university | graduate | hammerstudio (디렉터 10-03)
-const SUBS = ["university", "graduate", "hammerstudio"];
+let sub = "all";   // 비상업 하위: all | university | graduate | hammerstudio | arttoy (디렉터 10-03)
+const SUBS = ["university", "graduate", "hammerstudio", "arttoy"];
 
 function pickLang() {
   const q = new URLSearchParams(location.search).get("lang");
