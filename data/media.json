@@ -3,6 +3,36 @@
   {
    "type": "image",
    "src": "media/metaverse/01.jpg"
+  },
+  {
+   "type": "video",
+   "src": "media/metaverse/02.mp4",
+   "poster": "media/metaverse/02-poster.jpg",
+   "caption": "1"
+  },
+  {
+   "type": "video",
+   "src": "media/metaverse/03.mp4",
+   "poster": "media/metaverse/03-poster.jpg",
+   "caption": "1"
+  },
+  {
+   "type": "video",
+   "src": "media/metaverse/04.mp4",
+   "poster": "media/metaverse/04-poster.jpg",
+   "caption": "2"
+  },
+  {
+   "type": "video",
+   "src": "media/metaverse/05.mp4",
+   "poster": "media/metaverse/05-poster.jpg",
+   "caption": "3"
+  },
+  {
+   "type": "video",
+   "src": "media/metaverse/06.mp4",
+   "poster": "media/metaverse/06-poster.jpg",
+   "caption": "3"
   }
  ],
  "yeosu-arte-garden": [

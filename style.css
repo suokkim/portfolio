@@ -103,3 +103,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .qr-full img { width: min(80vw, 80vh, 560px); height: auto; image-rendering: pixelated; }
 .qr-full p { margin: 18px 0 0; font-size: 1rem; letter-spacing: .02em; }
 .qr-full .hint { margin-top: 6px; font-size: .78rem; color: #888; }
+
+/* 캡션 · 여러 줄 설명 */
+.media figure { margin: 0; }
+.media figcaption { color: var(--muted); font-size: .75rem; margin-top: 6px; }
+.desc { white-space: pre-line; }

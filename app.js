@@ -63,9 +63,15 @@ function workView(w) {
   const i = list.indexOf(w);
   const prev = list[i - 1], next = list[i + 1];
   const commercial = w.cat === "commercial";
-  const items = (media[w.slug] || []).map((m) => m.type === "video"
-    ? `<video src="${m.src}" poster="${m.poster}" controls playsinline preload="none"></video>`
-    : `<img src="${m.src}" alt="${esc(L(w.title))}" loading="lazy">`).join("");
+  // 캡션: works.json 의 captions(한·영, 미디어 순서대로)가 있으면 그것, 없으면 노션에서 딴 캡션
+  const caps = w.captions ? w.captions[lang] || w.captions.ko : [];
+  const items = (media[w.slug] || []).map((m, k) => {
+    const el = m.type === "video"
+      ? `<video src="${m.src}" poster="${m.poster}" controls playsinline preload="none"></video>`
+      : `<img src="${m.src}" alt="${esc(L(w.title))}" loading="lazy">`;
+    const cap = caps[k] || (w.captions ? "" : m.caption || "");
+    return `<figure>${el}${cap ? `<figcaption>${esc(cap)}</figcaption>` : ""}</figure>`;
+  }).join("");
   return `<article class="work">
     <a class="back" href="#/">${t("back")}</a>
     <h1>${esc(L(w.title))}</h1>

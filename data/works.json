@@ -9,12 +9,12 @@
   "client": null,
   "cover": 1,
   "title": {
-   "ko": "메타버스",
-   "en": "Metaverse"
+   "ko": "메타버스 — 포토그래메트리 문화재 3D",
+   "en": "Metaverse — Photogrammetry of Cultural Heritage"
   },
   "desc": {
-   "ko": "VentaVerse·Mozilla Hubs 기반 메타버스 공간 제작. 경주 이견대(利見亭) 등 전통 건축을 3D 공간으로 옮기고, 비행기 씬과 인테리어 씬을 만들었다.",
-   "en": "Metaverse spaces built on VentaVerse and Mozilla Hubs — a 3D reconstruction of the Igyeondae pavilion in Gyeongju, an airplane scene and an interior scene."
+   "ko": "2021년 메타버스 컨셉의 외주 프로젝트. 촬영된 이미지(영상) 자료를 바탕으로 문화재를 3D 공간으로 옮겼다.\n\n봉정사 — 매쉬 편집 및 모델링(리토폴로지), UV 편집, 사진 보정, 텍스쳐링 (촬영·RC 제외)\n성덕대왕신종 — RC(베타), 매쉬 편집 및 모델링(리토폴로지), UV 편집, 사진 보정, 텍스쳐링 (촬영 제외)\n이견대 — 내부 위주. RC(베타), 매쉬 편집 및 모델링(리토폴로지), UV 편집, 사진 보정, 텍스쳐링 (촬영 제외)\n\n사용 프로그램 — RealityCapture(베타), Photoshop, Blender, ZBrush, Nuke",
+   "en": "Outsourced metaverse project, 2021 — cultural heritage sites rebuilt as 3D spaces from photographed images and video.\n\nBongjeongsa Temple — mesh editing and modeling (retopology), UV editing, photo correction, texturing (shooting and RC excluded)\nSacred Bell of King Seongdeok — RC (beta), mesh editing and modeling (retopology), UV editing, photo correction, texturing (shooting excluded)\nIgyeondae Pavilion — mainly interior. RC (beta), mesh editing and modeling (retopology), UV editing, photo correction, texturing (shooting excluded)\n\nTools — RealityCapture (beta), Photoshop, Blender, ZBrush, Nuke"
   },
   "links": [
    {
@@ -30,7 +30,25 @@
     "url": "https://hubs.mozilla.com/scenes/w8YTxiN"
    }
   ],
-  "cat": "commercial"
+  "cat": "commercial",
+  "captions": {
+   "ko": [
+    "이견대",
+    "봉정사 — 외부",
+    "봉정사 — 내부",
+    "성덕대왕신종",
+    "이견대 — 외부",
+    "이견대 — 내부"
+   ],
+   "en": [
+    "Igyeondae",
+    "Bongjeongsa — exterior",
+    "Bongjeongsa — interior",
+    "Sacred Bell of King Seongdeok",
+    "Igyeondae — exterior",
+    "Igyeondae — interior"
+   ]
+  }
  },
  {
   "slug": "yeosu-arte-garden",
@@ -341,8 +359,8 @@
    "en": "outRush"
   },
   "desc": {
-   "ko": "",
-   "en": ""
+   "ko": "낙서로 뒤덮인 화장실 벽과 소변기 위로 손·인물 드로잉이 겹쳐 움직이는 2D 콜라주 애니메이션 (30초).",
+   "en": "A 2D collage animation in which hand-drawn hands and figures move over graffiti-covered restroom walls and urinals (30 sec)."
   },
   "links": [],
   "cover": 2
@@ -361,8 +379,8 @@
    "en": "playing"
   },
   "desc": {
-   "ko": "",
-   "en": ""
+   "ko": "골프장·테니스 코트·식탁 같은 '노는' 장면을 판화 질감의 콜라주로 엮은 애니메이션. 해골 얼굴의 인물들이 골프 카트를 몰고, 테니스를 치고, 술상에 앉는다 (1분).",
+   "en": "An animation weaving scenes of 'play' — a golf course, a tennis court, a dinner table — into a print-textured collage, with skull-faced figures driving golf carts, playing tennis and drinking (1 min)."
   },
   "links": [],
   "cover": 2
