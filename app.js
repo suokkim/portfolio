@@ -84,7 +84,8 @@ function workView(w) {
       ${w.year ? `<dt>${t("year")}</dt><dd>${w.year}</dd>` : ""}
       ${w.company ? `<dt>${commercial ? t("company") : t("org")}</dt><dd>${esc(L(w.company))}</dd>` : ""}
       ${w.client ? `<dt>${t("client")}</dt><dd>${esc(L(w.client))}</dd>` : ""}
-      ${commercial ? `<dt>${t("role")}</dt><dd>${t("roleVal")}</dd>` : ""}
+      ${w.role ? `<dt>${t("role")}</dt><dd>${esc(L(w.role))}</dd>`
+        : commercial ? `<dt>${t("role")}</dt><dd>${t("roleVal")}</dd>` : ""}
     </dl>
     ${L(w.desc) ? `<p class="desc">${esc(L(w.desc))}</p>` : ""}
     ${w.links.length ? `<ul class="links">${w.links.map((l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a></li>`).join("")}</ul>` : ""}
