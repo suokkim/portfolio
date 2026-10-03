@@ -51,12 +51,17 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* 제목·연도는 썸네일 위에 겹쳐 두고 호버 때만 (디렉터 10-03) */
 .card h2, .card .meta {
   position: absolute; left: 14px; right: 14px; margin: 0;
-  opacity: 0; transition: opacity .3s ease; pointer-events: none;
+  opacity: 0; transform: translateY(10px); transition: opacity .35s ease, transform .35s ease; pointer-events: none;
 }
 .card h2 { bottom: 34px; font-size: .9rem; font-weight: 500; line-height: 1.35; }
 .card .meta { bottom: 14px; color: var(--ink); font-size: .75rem; }
-.card:hover img, .card:focus-visible img { opacity: .25; }
-.card:hover h2, .card:hover .meta, .card:focus-visible h2, .card:focus-visible .meta { opacity: 1; }
+/* 마우스: 호버 / 휴대폰: 화면 가운데 지나는 썸네일(.on, app.js) — 터치 때 깜빡임 없게 호버는 마우스에서만 */
+@media (hover: hover) {
+  .card:hover img { opacity: .25; }
+  .card:hover h2, .card:hover .meta { opacity: 1; transform: none; }
+}
+.card.on img, .card:focus-visible img { opacity: .25; }
+.card.on h2, .card.on .meta, .card:focus-visible h2, .card:focus-visible .meta { opacity: 1; transform: none; }
 
 /* 상세 */
 .work { max-width: 960px; margin: 0 auto; padding: 0 16px; }

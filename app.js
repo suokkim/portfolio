@@ -17,7 +17,7 @@ const T = {
     org: "Affiliation", role: "Role", roleVal: "Senior Designer", back: "← All works", prev: "← Previous", next: "Next →",
     smsBody: "Suok Kim — Portfolio", lang: "KO",
     all: "All", commercial: "Commercial", noncommercial: "Non-commercial",
-    university: "Undergrad", graduate: "Graduate", hammerstudio: "HammerStudio", arttoy: "Toys",
+    university: "University", graduate: "Graduate", hammerstudio: "HammerStudio", arttoy: "Art toys",
   },
 };
 
@@ -81,7 +81,7 @@ function workView(w) {
   // groups 가 있으면 노션 하위 페이지처럼 묶음별 제목 + 그 묶음 미디어만 (목록에 없는 묶음은 뺀다)
   const items = w.groups
     ? w.groups.map((g) => `<h2 class="group-title">${esc(L(g))}</h2>` +
-        all.map((m, k) => (m.group === g.key || `${m.group}/${m.group2}` === g.key ? fig(m, k) : "")).join("")).join("")
+        all.map((m, k) => ([].concat(g.key).some((key) => m.group === key || `${m.group}/${m.group2}` === key) ? fig(m, k) : "")).join("")).join("")
     : all.map(fig).join("");
   return `<article class="work">
     <a class="back" href="#/">${t("back")}</a>
@@ -121,8 +121,19 @@ function render() {
   filter.querySelectorAll("button[data-cat]").forEach((b) => (b.onclick = () => { cat = b.dataset.cat; sub = "all"; toList(); }));
   filter.querySelectorAll("button[data-sub]").forEach((b) => (b.onclick = () => { sub = b.dataset.sub; toList(); }));
   document.getElementById("view").innerHTML = w ? workView(w) : listView();
+  watchCenter();
   document.querySelectorAll("#view .media img").forEach((img, k, all) => (img.onclick = () => openZoom([...all], k)));
   document.querySelectorAll("#view .share-btn").forEach((b) => (b.onclick = openSheet));
+}
+
+// 휴대폰(호버 없음): 화면 세로 가운데 줄에 걸친 썸네일만 제목이 올라온다 (디렉터 10-03)
+let centerObs;
+function watchCenter() {
+  if (centerObs) centerObs.disconnect();
+  if (!matchMedia("(hover: none)").matches || !window.IntersectionObserver) return;
+  centerObs = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle("on", e.isIntersecting)),
+    { rootMargin: "-49% 0px -50% 0px" });
+  document.querySelectorAll("#view .card").forEach((c) => centerObs.observe(c));
 }
 
 // 이미지 크게 보기 — 한 장씩 화면 가득, 위아래로 밀면 다음 장 (CSS scroll-snap), 확대는 손가락 벌리기 (디렉터 10-03)

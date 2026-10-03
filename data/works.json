@@ -332,7 +332,7 @@
    {"key": "Ring/N 04", "ko": "Ring N.04", "en": "Ring N.04"},
    {"key": "Ring/N 05", "ko": "Ring N.05", "en": "Ring N.05"},
    {"key": "Ring/N 06", "ko": "Ring N.06", "en": "Ring N.06"},
-   {"key": "making", "ko": "Making", "en": "Making"},
+   {"key": ["making", "Ring/제목 없음"], "ko": "Making", "en": "Making"},
    {"key": "쥬얼리 jewelry 1호 1604", "ko": "1호 · 2016.04", "en": "No. 1 · Apr 2016"},
    {"key": "쥬얼리 jewelry 2호 1605", "ko": "2호 · 2016.05", "en": "No. 2 · May 2016"},
    {"key": "쥬얼리 jewelry 3호 6 4 16", "ko": "3호", "en": "No. 3"},
