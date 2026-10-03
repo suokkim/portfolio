@@ -1,0 +1,123 @@
+[
+  {
+    "slug": "metaverse",
+    "year": 2021,
+    "company": {"ko": "벤타", "en": "Venta"},
+    "client": null,
+    "cover": 1,
+    "title": {"ko": "메타버스", "en": "Metaverse"},
+    "desc": {
+      "ko": "VentaVerse·Mozilla Hubs 기반 메타버스 공간 제작. 경주 이견대(利見亭) 등 전통 건축을 3D 공간으로 옮기고, 비행기 씬과 인테리어 씬을 만들었다.",
+      "en": "Metaverse spaces built on VentaVerse and Mozilla Hubs — a 3D reconstruction of the Igyeondae pavilion in Gyeongju, an airplane scene and an interior scene."
+    },
+    "links": [
+      {"label": "Igyeondae · VentaVerse", "url": "https://eduxr.org/scenes/C7L84pW"},
+      {"label": "Sleepy Classic Plane · VentaVerse", "url": "https://eduxr.org/W2qdiMF/sleepy-classic-plane"},
+      {"label": "GRJ interior · Mozilla Hubs", "url": "https://hubs.mozilla.com/scenes/w8YTxiN"}
+    ]
+  },
+  {
+    "slug": "yeosu-arte-garden",
+    "year": 2021,
+    "company": {"ko": "디스트릭트", "en": "d'strict"},
+    "client": {"ko": "아르떼뮤지엄 여수", "en": "ARTE MUSEUM Yeosu"},
+    "cover": 3,
+    "title": {"ko": "여수 아르떼 가든 오프닝", "en": "ARTE MUSEUM Yeosu — Garden"},
+    "desc": {
+      "ko": "아르떼뮤지엄 여수 개관을 위한 'GARDEN' 몰입형 미디어 공간. 벽과 바닥 전체에 영상을 투사하는 공간 시안.",
+      "en": "The immersive 'GARDEN' media space for the opening of ARTE MUSEUM Yeosu — a wall-to-floor projection design."
+    },
+    "links": [{"label": "ARTE MUSEUM Yeosu", "url": "https://kr.artemuseum.com/YEOSU"}]
+  },
+  {
+    "slug": "paradise",
+    "year": 2018,
+    "company": {"ko": "닷밀", "en": "dot-mill"},
+    "client": {"ko": "파라다이스", "en": "Paradise"},
+    "cover": 1,
+    "title": {"ko": "파라다이스 호텔 미디어파사드", "en": "Paradise Hotel Media Facade"},
+    "desc": {
+      "ko": "파라다이스 호텔 미디어파사드. 건물과 유리면 3D 렌더, 도시 고가도로 장면.",
+      "en": "Media facade for Paradise Hotel — 3D renders of the building and its glass surfaces, and an elevated-highway sequence."
+    },
+    "links": []
+  },
+  {
+    "slug": "hyundai-hologram",
+    "year": 2016,
+    "company": {"ko": "디스트릭트", "en": "d'strict"},
+    "client": {"ko": "현대자동차", "en": "Hyundai Motor"},
+    "cover": 1,
+    "title": {"ko": "현대 신차 홀로그램", "en": "Hyundai New Car Hologram"},
+    "desc": {
+      "ko": "현대자동차 신차 공개용 홀로그램 영상. 차량 3D 렌더(Arnold), 라이팅 테스트, 천을 벗기는 언베일링 애니메이션.",
+      "en": "Hologram film for a Hyundai new-car reveal — vehicle 3D renders (Arnold), lighting tests and a cloth-unveiling animation."
+    },
+    "links": []
+  },
+  {
+    "slug": "sansu-munwon",
+    "year": 2016,
+    "company": {"ko": "디스트릭트", "en": "d'strict"},
+    "client": {"ko": "산수문원(중국)", "en": "Sansu Munwon, China"},
+    "cover": 5,
+    "title": {"ko": "중국 산수문원 미디어파사드 컨셉디자인", "en": "Sansu Munwon Media Facade Concept"},
+    "desc": {
+      "ko": "중국 테마파크 '산수문원'의 미디어파사드 컨셉. 상징 깃발·해안 폭포·아쿠아리움·롤러코스터·리조트 테마별 이미지와 영상(관객 반응 on/off, 건축과 사운드).",
+      "en": "Media facade concept for Sansu Munwon, a theme park in China — themed visuals (symbol flag, coastal waterfall, aquarium, roller coaster, resort) and films (audience on/off, architecture with sound)."
+    },
+    "links": []
+  },
+  {
+    "slug": "dragon-mask",
+    "year": 2016,
+    "company": {"ko": "디스트릭트", "en": "d'strict"},
+    "client": null,
+    "cover": 5,
+    "title": {"ko": "용탈 — 모델링·맵핑·리깅", "en": "Dragon Mask — Modeling, Mapping, Rigging"},
+    "desc": {
+      "ko": "용 탈의 3D 모델링, 텍스처 맵핑, 리깅. 붉고 흰 문양과 털 표현.",
+      "en": "3D modeling, texture mapping and rigging of a dragon mask — red-and-white ornament and fur."
+    },
+    "links": []
+  },
+  {
+    "slug": "hanwha-lnc",
+    "year": 2012,
+    "company": {"ko": "이프웍스", "en": "ifworks"},
+    "client": {"ko": "한화", "en": "Hanwha"},
+    "cover": 6,
+    "title": {"ko": "한화 LnC — Link in", "en": "Hanwha LnC — Link in"},
+    "desc": {
+      "ko": "한화 LnC 'Link in' 인트로 영상. 구리선 드로잉 같은 선이 집과 풍경을 그려 나가는 3D 애니메이션.",
+      "en": "Intro film for Hanwha LnC 'Link in' — a 3D animation in which copper-wire lines draw houses and landscapes."
+    },
+    "links": []
+  },
+  {
+    "slug": "livepark-meta",
+    "year": 2011,
+    "company": {"ko": "디스트릭트", "en": "d'strict"},
+    "client": {"ko": "라이브파크", "en": "Live Park"},
+    "cover": 3,
+    "title": {"ko": "라이브파크 META — 4D World Tour (KINTEX)", "en": "Live Park META — 4D World Tour (KINTEX)"},
+    "desc": {
+      "ko": "달공장 'META' — 360도 파노라마 스크린을 위한 3D 영상. 쇼에 등장하는 소품을 스케치에서 3D 모델로(램프·물뿌리개·니퍼·얼음틀, 스팀펑크풍).",
+      "en": "'META' by Dalgongjang — a 3D film for a 360° panoramic screen, and the show's props taken from sketch to 3D model (lamp, watering can, nipper, ice tray; steampunk style)."
+    },
+    "links": [{"label": "YouTube", "url": "https://youtu.be/Q6HnZUSffx4?t=224"}]
+  },
+  {
+    "slug": "tiffany",
+    "year": 2010,
+    "company": {"ko": "디스트릭트", "en": "d'strict"},
+    "client": {"ko": "티파니", "en": "Tiffany & Co."},
+    "cover": 1,
+    "title": {"ko": "Tiffany & Co. — Blue Is The Color Of Dreams", "en": "Tiffany & Co. — Blue Is The Color Of Dreams"},
+    "desc": {
+      "ko": "티파니 베이징 플래그십 개점(2010년 12월)을 앞두고, 2010년 10월 29일 매장 외벽에 펼친 4D 프로젝션 매핑.",
+      "en": "4D projection mapping on the façade of the new Tiffany Beijing flagship on 29 October 2010, ahead of its December opening."
+    },
+    "links": [{"label": "YouTube", "url": "https://youtu.be/K57xK-8C9MM"}]
+  }
+]
