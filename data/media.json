@@ -359,5 +359,138 @@
    "src": "media/tiffany/03.mp4",
    "poster": "media/tiffany/03-poster.jpg"
   }
+ ],
+ "hyundai-hnd4": [
+  {
+   "type": "image",
+   "src": "media/hyundai-hnd4/01.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/hyundai-hnd4/02.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/hyundai-hnd4/03.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/hyundai-hnd4/04.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/hyundai-hnd4/05.jpg"
+  },
+  {
+   "type": "video",
+   "src": "media/hyundai-hnd4/06.mp4",
+   "poster": "media/hyundai-hnd4/06-poster.jpg"
+  }
+ ],
+ "seaworld": [
+  {
+   "type": "video",
+   "src": "media/seaworld/01.mp4",
+   "poster": "media/seaworld/01-poster.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/seaworld/02.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/seaworld/03.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/seaworld/04.jpg"
+  },
+  {
+   "type": "video",
+   "src": "media/seaworld/05.mp4",
+   "poster": "media/seaworld/05-poster.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/seaworld/06.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/seaworld/07.jpg"
+  }
+ ],
+ "miffy": [
+  {
+   "type": "video",
+   "src": "media/miffy/01.mp4",
+   "poster": "media/miffy/01-poster.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/miffy/02.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/miffy/03.jpg"
+  }
+ ],
+ "lipsync": [
+  {
+   "type": "video",
+   "src": "media/lipsync/01.mp4",
+   "poster": "media/lipsync/01-poster.jpg"
+  },
+  {
+   "type": "video",
+   "src": "media/lipsync/02.mp4",
+   "poster": "media/lipsync/02-poster.jpg"
+  }
+ ],
+ "a-dot": [
+  {
+   "type": "video",
+   "src": "media/a-dot/01.mp4",
+   "poster": "media/a-dot/01-poster.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/a-dot/02.jpg"
+  }
+ ],
+ "outrush": [
+  {
+   "type": "video",
+   "src": "media/outrush/01.mp4",
+   "poster": "media/outrush/01-poster.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/outrush/02.jpg"
+  }
+ ],
+ "vdas-playing": [
+  {
+   "type": "video",
+   "src": "media/vdas-playing/01.mp4",
+   "poster": "media/vdas-playing/01-poster.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/vdas-playing/02.jpg"
+  }
+ ],
+ "printmaking": [
+  {
+   "type": "image",
+   "src": "media/printmaking/01.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/printmaking/02.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/printmaking/03.jpg"
+  }
  ]
 }

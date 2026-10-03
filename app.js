@@ -4,21 +4,24 @@ const SITE = "https://suokkim.github.io/portfolio/";
 
 const T = {
   ko: {
-    sub: "선임디자이너 · 미디어파사드 · 3D", share: "공유", sms: "문자로 보내기", qr: "QR 크게 보기",
+    share: "공유", sms: "문자로 보내기", qr: "QR 크게 보기",
     close: "닫기", tapclose: "아무 데나 누르면 닫힙니다", year: "연도", company: "회사", client: "클라이언트",
-    role: "역할", roleVal: "선임디자이너", back: "← 목록", prev: "← 이전", next: "다음 →",
+    org: "소속", role: "역할", roleVal: "선임디자이너", back: "← 목록", prev: "← 이전", next: "다음 →",
     smsBody: "Suok Kim 포트폴리오", lang: "EN",
+    all: "전체", commercial: "상업", noncommercial: "비상업",
   },
   en: {
-    sub: "Senior Designer · Media Facade · 3D", share: "Share", sms: "Send by text message", qr: "Show QR code",
+    share: "Share", sms: "Send by text message", qr: "Show QR code",
     close: "Close", tapclose: "Tap anywhere to close", year: "Year", company: "Studio", client: "Client",
-    role: "Role", roleVal: "Senior Designer", back: "← All works", prev: "← Previous", next: "Next →",
+    org: "Affiliation", role: "Role", roleVal: "Senior Designer", back: "← All works", prev: "← Previous", next: "Next →",
     smsBody: "Suok Kim — Portfolio", lang: "KO",
+    all: "All", commercial: "Commercial", noncommercial: "Non-commercial",
   },
 };
 
 let lang = pickLang();
 let works = [], media = {};
+let cat = "all";   // 분류: all | commercial | noncommercial (디렉터 10-03 — 대학교·대학원 작업을 상업/비상업으로)
 
 function pickLang() {
   const q = new URLSearchParams(location.search).get("lang");
@@ -42,20 +45,24 @@ function coverOf(w) {
   return it.type === "video" ? it.poster : it.src;
 }
 
+const shown = () => works.filter((w) => cat === "all" || w.cat === cat);
+
 function listView() {
   document.title = "Suok Kim — Portfolio";
-  return `<section class="grid">${works.map((w) => `
+  return `<section class="grid">${shown().map((w) => `
     <a class="card" href="#/${w.slug}">
       <div class="thumb"><img src="${coverOf(w)}" alt="${esc(L(w.title))}" loading="lazy"></div>
       <h2>${esc(L(w.title))}</h2>
-      <div class="meta">${w.year} · ${esc(L(w.company))}${w.client ? " · " + esc(L(w.client)) : ""}</div>
+      <div class="meta">${w.year || ""}</div>
     </a>`).join("")}</section>`;
 }
 
 function workView(w) {
   document.title = `${L(w.title)} — Suok Kim`;
-  const i = works.indexOf(w);
-  const prev = works[i - 1], next = works[i + 1];
+  const list = shown().includes(w) ? shown() : works;
+  const i = list.indexOf(w);
+  const prev = list[i - 1], next = list[i + 1];
+  const commercial = w.cat === "commercial";
   const items = (media[w.slug] || []).map((m) => m.type === "video"
     ? `<video src="${m.src}" poster="${m.poster}" controls playsinline preload="none"></video>`
     : `<img src="${m.src}" alt="${esc(L(w.title))}" loading="lazy">`).join("");
@@ -63,12 +70,12 @@ function workView(w) {
     <a class="back" href="#/">${t("back")}</a>
     <h1>${esc(L(w.title))}</h1>
     <dl class="facts">
-      <dt>${t("year")}</dt><dd>${w.year}</dd>
-      <dt>${t("company")}</dt><dd>${esc(L(w.company))}</dd>
+      ${w.year ? `<dt>${t("year")}</dt><dd>${w.year}</dd>` : ""}
+      ${w.company ? `<dt>${commercial ? t("company") : t("org")}</dt><dd>${esc(L(w.company))}</dd>` : ""}
       ${w.client ? `<dt>${t("client")}</dt><dd>${esc(L(w.client))}</dd>` : ""}
-      <dt>${t("role")}</dt><dd>${t("roleVal")}</dd>
+      ${commercial ? `<dt>${t("role")}</dt><dd>${t("roleVal")}</dd>` : ""}
     </dl>
-    <p class="desc">${esc(L(w.desc))}</p>
+    ${L(w.desc) ? `<p class="desc">${esc(L(w.desc))}</p>` : ""}
     ${w.links.length ? `<ul class="links">${w.links.map((l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a></li>`).join("")}</ul>` : ""}
     <div class="work-share"><button class="share-btn" type="button">${t("share")}</button></div>
     <div class="media">${items}</div>
@@ -85,6 +92,11 @@ function render() {
   document.getElementById("lang").textContent = t("lang");
   const slug = location.hash.replace(/^#\/?/, "");
   const w = works.find((x) => x.slug === slug);
+  const filter = document.getElementById("filter");
+  filter.hidden = !!w;
+  filter.innerHTML = ["all", "commercial", "noncommercial"].map((c) =>
+    `<button type="button" data-cat="${c}" aria-pressed="${c === cat}">${t(c)}</button>`).join("");
+  filter.querySelectorAll("button").forEach((b) => (b.onclick = () => { cat = b.dataset.cat; render(); }));
   document.getElementById("view").innerHTML = w ? workView(w) : listView();
   document.querySelectorAll("#view .share-btn").forEach((b) => (b.onclick = openSheet));
 }
