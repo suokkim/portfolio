@@ -467,7 +467,8 @@
   "school": {
    "ko": "숙명여대",
    "en": "Sookmyung"
-  }
+  },
+  "split": true
  },
  {
   "slug": "karts-2026-1",
