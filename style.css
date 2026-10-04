@@ -175,3 +175,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* 스토리보드 — 영상 장면을 시네마틱하게 나열 (디렉터 10-04, 라이브파크 META) */
 .media.story { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 4px; margin-top: 4px; }
 .media.story img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+.media.small { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 6px; margin-top: 24px; }
+.media.small img { aspect-ratio: 1; object-fit: cover; }
+.media.small figcaption { display: none; }
