@@ -6,7 +6,7 @@ const T = {
   ko: {
     share: "공유", sms: "문자로 보내기", qr: "QR 크게 보기",
     close: "닫기", tapclose: "아무 데나 누르면 닫힙니다", year: "연도", company: "회사", client: "클라이언트",
-    org: "소속", role: "역할", roleVal: "선임디자이너", back: "← 목록", prev: "← 이전", next: "다음 →",
+    org: "소속", back: "← 목록", prev: "← 이전", next: "다음 →",
     smsBody: "Suok Kim 포트폴리오", lang: "EN",
     all: "전체", commercial: "상업", noncommercial: "비상업",
     university: "대학교", graduate: "대학원", hammerstudio: "HammerStudio", arttoy: "교육",
@@ -14,7 +14,7 @@ const T = {
   en: {
     share: "Share", sms: "Send by text message", qr: "Show QR code",
     close: "Close", tapclose: "Tap anywhere to close", year: "Year", company: "Studio", client: "Client",
-    org: "Affiliation", role: "Role", roleVal: "Senior Designer", back: "← All works", prev: "← Previous", next: "Next →",
+    org: "Affiliation", back: "← All works", prev: "← Previous", next: "Next →",
     smsBody: "Suok Kim — Portfolio", lang: "KO",
     all: "All", commercial: "Commercial", noncommercial: "Non-commercial",
     university: "University", graduate: "Graduate", hammerstudio: "HammerStudio", arttoy: "Education",
@@ -131,7 +131,10 @@ function workView(w) {
           <h2>${esc(L(g))}</h2>
           <div class="meta">${all.filter((m) => inGroup(m, g)).length}</div>
         </a>`; }).join("")}</div>`
-    : `<div class="media">${w.youtube ? `<figure class="yt"><iframe src="https://www.youtube-nocookie.com/embed/${esc(w.youtube)}" title="${esc(L(w.title))}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></figure>` : ""}${items}</div>`;
+    : `<div class="media">${w.youtube ? `<figure class="yt"><iframe src="https://www.youtube-nocookie.com/embed/${esc(w.youtube)}" title="${esc(L(w.title))}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></figure>` : ""}${items}</div>`
+      // storyboard: 영상에서 뽑은 장면을 스토리보드처럼 나열 (디렉터 10-04, 라이브파크 META)
+      + (w.storyboard ? `<div class="media story">${Array.from({ length: w.storyboard }, (_, k) =>
+        `<img src="media/${w.slug}/story/${String(k + 1).padStart(2, "0")}.jpg" alt="${esc(L(w.title))} ${k + 1}" loading="lazy">`).join("")}</div>` : "");
   return `<article class="work">
     <a class="back" href="#/">${t("back")}</a>
     <h1>${esc(L(w.title))}</h1>
@@ -139,8 +142,6 @@ function workView(w) {
       ${w.year ? `<dt>${t("year")}</dt><dd>${w.year}</dd>` : ""}
       ${w.company ? `<dt>${commercial ? t("company") : t("org")}</dt><dd>${esc(L(w.company))}</dd>` : ""}
       ${w.client ? `<dt>${t("client")}</dt><dd>${esc(L(w.client))}</dd>` : ""}
-      ${w.role ? `<dt>${t("role")}</dt><dd>${esc(L(w.role))}</dd>`
-        : commercial ? `<dt>${t("role")}</dt><dd>${t("roleVal")}</dd>` : ""}
     </dl>
     ${L(w.desc) ? `<p class="desc">${esc(L(w.desc))}</p>` : ""}
     ${w.links.length ? `<ul class="links">${w.links.map((l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a></li>`).join("")}</ul>` : ""}
@@ -192,11 +193,14 @@ addEventListener("resize", watchCenter);
 // 이미지 크게 보기 — 한 장씩 화면 가득, 위아래로 밀면 다음 장 (CSS scroll-snap), 확대는 손가락 벌리기 (디렉터 10-03)
 function openZoom(imgs, k) {
   const z = document.getElementById("zoom");
-  z.innerHTML = `<button class="zoom-close" type="button">${t("close")}</button>` +
+  z.innerHTML = `<button class="zoom-close" type="button">${t("close")}</button><div class="zoom-count"></div>` +
     imgs.map((i) => `<div class="z"><img src="${i.src}" alt=""></div>`).join("");
   z.hidden = false;
   document.body.style.overflow = "hidden";
   z.querySelectorAll(".z")[k].scrollIntoView();
+  // 몇 번째 장인지 아래에 (디렉터 10-04)
+  const cnt = z.querySelector(".zoom-count");
+  (z.onscroll = () => (cnt.textContent = `${Math.round(z.scrollTop / z.clientHeight) + 1} / ${imgs.length}`))();
   z.querySelector(".zoom-close").onclick = closeZoom;
 }
 function closeZoom() {
