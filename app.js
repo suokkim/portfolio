@@ -62,7 +62,7 @@ function listView() {
       <h2>${esc(L(w.title))}</h2>
       <div class="meta">${w.year || ""}</div>
     </a>` : w.groups.map((g, gi) => {
-      const c = (media[w.slug] || []).find((m) => inGroup(m, g));
+      const c = (media[w.slug] || []).find((m) => inGroup(m, g) && !m.src.endsWith(".gif"));
       return `
     <a class="card" href="#/${w.slug}/${gi + 1}">
       <div class="thumb"><img src="${c ? c.poster || c.src : ""}" alt="${esc(L(g))}" loading="lazy"></div>
@@ -125,7 +125,7 @@ function workView(w) {
   // split: 묶음마다 따로 페이지 — 작품 페이지는 묶음 카드만 (디렉터 10-03, 주얼리 반지 연작)
   const body = w.split
     ? `<div class="grid">${w.groups.map((g, gi) => {
-        const c = all.find((m) => inGroup(m, g));
+        const c = all.find((m) => inGroup(m, g) && !m.src.endsWith(".gif"));
         return `<a class="card" href="#/${w.slug}/${gi + 1}">
           <div class="thumb"><img src="${c ? c.poster || c.src : ""}" alt="${esc(L(g))}" loading="lazy"></div>
           <h2>${esc(L(g))}</h2>
