@@ -413,7 +413,7 @@
   "slug": "ceramic-1",
   "cat": "noncommercial",
   "sub": "hammerstudio",
-  "year": null,
+  "year": 2026,
   "company": null,
   "client": null,
   "cover": 1,
@@ -421,13 +421,17 @@
    "ko": "도자기 1",
    "en": "Ceramics 1"
   },
-  "links": []
+  "links": [],
+  "desc": {
+   "ko": "곡선과 직선의 대비.",
+   "en": "A contrast of curves and straight lines."
+  }
  },
  {
   "slug": "ceramic-2",
   "cat": "noncommercial",
   "sub": "hammerstudio",
-  "year": null,
+  "year": 2026,
   "company": null,
   "client": null,
   "cover": 1,
@@ -435,7 +439,11 @@
    "ko": "도자기 2",
    "en": "Ceramics 2"
   },
-  "links": []
+  "links": [],
+  "desc": {
+   "ko": "곡선과 직선의 대비.",
+   "en": "A contrast of curves and straight lines."
+  }
  },
  {
   "slug": "nca-showcase-2",
