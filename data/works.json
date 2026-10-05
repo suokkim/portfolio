@@ -468,7 +468,11 @@
     "en": "Tarotaros"
    }
   ],
-  "links": []
+  "links": [],
+  "role": {
+   "ko": "가상 시각화 강사",
+   "en": "Virtual Visualization Instructor"
+  }
  },
  {
   "slug": "arttoy",
