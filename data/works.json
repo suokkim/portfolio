@@ -450,6 +450,41 @@
   "links": []
  },
  {
+  "slug": "ncae-showcase-2",
+  "cat": "noncommercial",
+  "sub": "arttoy",
+  "school": {
+   "ko": "NCAE",
+   "en": "NCAE"
+  },
+  "year": 2025,
+  "company": null,
+  "client": null,
+  "cover": 1,
+  "title": {
+   "ko": "NCAE 2기 쇼케이스",
+   "en": "NCAE Showcase — Cohort 2"
+  },
+  "groups": [
+   {
+    "key": "모노몽",
+    "ko": "모노몽",
+    "en": "Monomong"
+   },
+   {
+    "key": "빵탄호소단",
+    "ko": "빵탄호소단",
+    "en": "Ppangtan Hosodan"
+   },
+   {
+    "key": "타로타로스",
+    "ko": "타로타로스",
+    "en": "Tarotaros"
+   }
+  ],
+  "links": []
+ },
+ {
   "slug": "arttoy",
   "cat": "noncommercial",
   "sub": "arttoy",
