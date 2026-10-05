@@ -57,10 +57,7 @@
    "ko": "디스트릭트",
    "en": "d'strict"
   },
-  "client": {
-   "ko": "아르떼뮤지엄 여수",
-   "en": "ARTE MUSEUM Yeosu"
-  },
+  "client": null,
   "cover": 3,
   "title": {
    "ko": "여수 아르떼 가든 오프닝",
@@ -76,7 +73,12 @@
     "url": "https://kr.artemuseum.com/YEOSU"
    }
   ],
-  "cat": "commercial"
+  "cat": "commercial",
+  "role": {
+   "ko": "영상 콘텐츠 제작",
+   "en": "Video content production"
+  },
+  "roleLabel": "part"
  },
  {
   "slug": "paradise",

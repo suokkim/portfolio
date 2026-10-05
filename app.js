@@ -6,7 +6,7 @@ const T = {
   ko: {
     share: "공유", sms: "문자로 보내기", qr: "QR 크게 보기",
     close: "닫기", tapclose: "아무 데나 누르면 닫힙니다", year: "연도", company: "회사", client: "클라이언트",
-    org: "소속", role: "직책", back: "← 목록", prev: "← 이전", next: "다음 →",
+    org: "소속", role: "직책", part: "역할", back: "← 목록", prev: "← 이전", next: "다음 →",
     smsBody: "Suok Kim 포트폴리오", lang: "EN",
     all: "전체", commercial: "상업", noncommercial: "비상업",
     university: "대학교", graduate: "대학원", hammerstudio: "HammerStudio", arttoy: "교육",
@@ -14,7 +14,7 @@ const T = {
   en: {
     share: "Share", sms: "Send by text message", qr: "Show QR code",
     close: "Close", tapclose: "Tap anywhere to close", year: "Year", company: "Studio", client: "Client",
-    org: "Affiliation", role: "Position", back: "← All works", prev: "← Previous", next: "Next →",
+    org: "Affiliation", role: "Position", part: "Role", back: "← All works", prev: "← Previous", next: "Next →",
     smsBody: "Suok Kim — Portfolio", lang: "KO",
     all: "All", commercial: "Commercial", noncommercial: "Non-commercial",
     university: "University", graduate: "Graduate", hammerstudio: "HammerStudio", arttoy: "Education",
@@ -143,7 +143,7 @@ function workView(w) {
       ${w.year ? `<dt>${t("year")}</dt><dd>${w.year}</dd>` : ""}
       ${w.company ? `<dt>${commercial ? t("company") : t("org")}</dt><dd>${esc(L(w.company))}</dd>` : ""}
       ${w.client ? `<dt>${t("client")}</dt><dd>${esc(L(w.client))}</dd>` : ""}
-      ${w.role ? `<dt>${t("role")}</dt><dd>${esc(L(w.role))}</dd>` : ""}
+      ${w.role ? `<dt>${t(w.roleLabel || "role")}</dt><dd>${esc(L(w.role))}</dd>` : ""}
     </dl>
     ${L(w.desc) ? `<p class="desc">${esc(L(w.desc))}</p>` : ""}
     ${w.links.length ? `<ul class="links">${w.links.map((l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a></li>`).join("")}</ul>` : ""}
