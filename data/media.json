@@ -3642,5 +3642,41 @@
    "group": "제목 없음",
    "group2": "스크린샷 2019-04-26 오후 11 54 51"
   }
+ ],
+ "ceramic-1": [
+  {
+   "type": "image",
+   "src": "media/ceramic-1/01.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/ceramic-1/02.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/ceramic-1/03.jpg"
+  }
+ ],
+ "ceramic-2": [
+  {
+   "type": "image",
+   "src": "media/ceramic-2/01.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/ceramic-2/02.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/ceramic-2/03.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/ceramic-2/04.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/ceramic-2/05.jpg"
+  }
  ]
 }

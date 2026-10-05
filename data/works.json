@@ -422,6 +422,34 @@
   "sub": "hammerstudio"
  },
  {
+  "slug": "ceramic-1",
+  "cat": "noncommercial",
+  "sub": "hammerstudio",
+  "year": null,
+  "company": null,
+  "client": null,
+  "cover": 1,
+  "title": {
+   "ko": "도자기 1",
+   "en": "Ceramics 1"
+  },
+  "links": []
+ },
+ {
+  "slug": "ceramic-2",
+  "cat": "noncommercial",
+  "sub": "hammerstudio",
+  "year": null,
+  "company": null,
+  "client": null,
+  "cover": 1,
+  "title": {
+   "ko": "도자기 2",
+   "en": "Ceramics 2"
+  },
+  "links": []
+ },
+ {
   "slug": "arttoy",
   "cat": "noncommercial",
   "sub": "arttoy",
