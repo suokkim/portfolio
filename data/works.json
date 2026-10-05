@@ -436,20 +436,20 @@
   "links": []
  },
  {
-  "slug": "ncae-showcase-2",
+  "slug": "nca-showcase-2",
   "cat": "noncommercial",
   "sub": "arttoy",
   "school": {
-   "ko": "NCAE",
-   "en": "NCAE"
+   "ko": "뉴콘텐츠아카데미 (NCA)",
+   "en": "New Content Academy (NCA)"
   },
   "year": 2025,
   "company": null,
   "client": null,
   "cover": 1,
   "title": {
-   "ko": "NCAE 2기 쇼케이스",
-   "en": "NCAE Showcase — Cohort 2"
+   "ko": "NCA 2기 쇼케이스",
+   "en": "NCA Showcase — Cohort 2"
   },
   "groups": [
    {
