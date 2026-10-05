@@ -131,11 +131,11 @@ function workView(w) {
           <h2>${esc(L(g))}</h2>
           <div class="meta">${all.filter((m) => inGroup(m, g)).length}</div>
         </a>`; }).join("")}</div>`
-    : `<div class="media">${w.youtube ? `<figure class="yt"><iframe src="https://www.youtube-nocookie.com/embed/${esc(w.youtube)}" title="${esc(L(w.title))}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></figure>` : ""}${w.storyboard ? "" : items}</div>`
-      // storyboard: 영상 바로 아래 장면 나열(시네마틱), 나머지 이미지는 그 아래 작은 격자 (디렉터 10-04, 라이브파크 META)
+    : `<div class="media">${w.youtube ? `<figure class="yt"><iframe src="https://www.youtube-nocookie.com/embed/${esc(w.youtube)}" title="${esc(L(w.title))}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></figure>` : ""}${w.storyboard ? all.map((m, k) => (m.type === "video" ? fig(m, k) : "")).join("") : items}</div>`
+      // storyboard: 영상 바로 아래 장면 나열(시네마틱), 나머지 사진은 그 아래 작은 격자 (디렉터 10-04, 라이브파크 META)
       + (w.storyboard ? `<div class="media story">${Array.from({ length: w.storyboard }, (_, k) =>
         `<img src="media/${w.slug}/story/${String(k + 1).padStart(2, "0")}.jpg" alt="${esc(L(w.title))} ${k + 1}" loading="lazy">`).join("")}</div>
-        <div class="media small">${items}</div>` : "");
+        <div class="media small">${all.map((m, k) => (m.type === "video" ? "" : fig(m, k))).join("")}</div>` : "");
   return `<article class="work">
     <a class="back" href="#/">${t("back")}</a>
     <h1>${esc(L(w.title))}</h1>
