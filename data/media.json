@@ -3699,6 +3699,20 @@
    "src": "media/ceramic-2/05.jpg"
   }
  ],
+ "ceramic-3": [
+  {
+   "type": "image",
+   "src": "media/ceramic-3/01.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/ceramic-3/02.jpg"
+  },
+  {
+   "type": "image",
+   "src": "media/ceramic-3/03.jpg"
+  }
+ ],
  "nca-showcase-2": [
   {
    "type": "image",

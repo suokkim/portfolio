@@ -452,6 +452,24 @@
   }
  },
  {
+  "slug": "ceramic-3",
+  "cat": "noncommercial",
+  "sub": "hammerstudio",
+  "year": 2026,
+  "company": null,
+  "client": null,
+  "cover": 1,
+  "title": {
+   "ko": "도자기 3",
+   "en": "Ceramics 3"
+  },
+  "links": [],
+  "desc": {
+   "ko": "곡선과 직선의 대비.",
+   "en": "A contrast of curves and straight lines."
+  }
+ },
+ {
   "slug": "nca-showcase-2",
   "cat": "noncommercial",
   "sub": "arttoy",
