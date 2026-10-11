@@ -75,6 +75,15 @@ function listView() {
     return schools.map((s) => `<h3 class="school">${esc(s)}</h3><section class="grid">${
       shown().filter((w) => L(w.school) === s).map(cards).join("")}</section>`).join("");
   }
+  // 모아보기에서는 미디어아트처럼 분류별로 나눠 보인다 — 상업 · 대학교 · 대학원 · HammerStudio · 교육 (디렉터 10-11)
+  if (document.body.classList.contains("compact") && (cat === "all" || (cat === "noncommercial" && sub === "all"))) {
+    const parts = [...(cat === "all" ? [["commercial", (w) => w.cat === "commercial"]] : []),
+      ...SUBS.map((x) => [x, (w) => w.cat === "noncommercial" && w.sub === x])];
+    return parts.map(([key, ok]) => {
+      const ws = shown().filter(ok);
+      return ws.length ? `<h3 class="school">${t(key)}</h3><section class="grid">${ws.map(cards).join("")}</section>` : "";
+    }).join("");
+  }
   return `<section class="grid">${shown().map(cards).join("")}</section>`;
 }
 
@@ -226,6 +235,9 @@ function openZoom(imgs, k) {
     if (i === cur || !marks[i]) return;
     const first = cur < 0;
     cur = i;
+    // 다른 장으로 넘어가면 눌러서 키운 확대는 풀어 둔다 — 확대 상태에 갇혀 위아래로 안 넘어가던 문제 (디렉터 10-11)
+    z.querySelectorAll(".z.big").forEach((b) => { b.classList.remove("big"); b.querySelector("img").style.width = ""; });
+    z.classList.remove("pinched");
     marks.forEach((m, j) => m.classList.toggle("on", j === i));
     // 지금 장 썸네일을 늘 가운데로 — 끄는 동안은 줄이 손가락을 그대로 따라가므로 건드리지 않는다
     if (!dragging) nav.scrollTo({ left: centerOf(i), behavior: first ? "instant" : "smooth" });
@@ -307,6 +319,7 @@ const setCompact = (on) => {
   document.body.classList.toggle("compact", on);
   document.querySelectorAll("#view .card.on").forEach((c) => c.classList.remove("on"));
   if (!on) watchCenter();
+  if (works.length && !location.hash.replace(/^#\/?/, "")) render();   // 목록이면 분류 묶음을 다시 그린다
   gridBtn.setAttribute("aria-pressed", on);
   try { localStorage.setItem("compact", on ? "1" : ""); } catch (e) {}
 };

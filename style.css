@@ -185,7 +185,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .media.small img { aspect-ratio: 1; object-fit: cover; }
 .media.small figcaption { display: none; }
 
-.zoom .z.big { display: block; overflow: auto; overscroll-behavior: contain; padding-bottom: 0; }
+.zoom .z.big { display: block; overflow: auto; padding-bottom: 0; }   /* 확대한 사진 끝까지 밀면 다음 장으로 이어서 넘어가게 (contain 빼둠) */
 .zoom .z.big img { max-width: none; max-height: none; margin: 0 auto; display: block; cursor: zoom-out; }
 
 /* 모아보기 — 목록을 3열 정사각 격자로 (디렉터 10-05, 세라믹 사이트와 같은 방식). 머리: 언어 · 모아보기 · QR */
